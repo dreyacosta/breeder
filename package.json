@@ -3,6 +3,11 @@
   "version": "0.0.0",
   "description": "Functional JavaScript helper library",
   "main": "index.js",
+  "browserify": {
+    "transform": [
+      "coffeeify"
+    ]
+  },
   "scripts": {
     "test": "gulp test"
   },
