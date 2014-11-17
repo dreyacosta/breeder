@@ -1,9 +1,13 @@
 "use strict"
 
-gulp   = require "gulp"
-coffee = require "gulp-coffee"
-concat = require "gulp-concat"
-karma  = require("karma").server
+gulp         = require "gulp"
+coffee       = require "gulp-coffee"
+concat       = require "gulp-concat"
+ugligy       = require "gulp-uglify"
+browserify   = require "browserify"
+sourceStream = require "vinyl-source-stream"
+buffer       = require "vinyl-buffer"
+karma        = require("karma").server
 
 meta =
   build  : "build"
@@ -26,13 +30,24 @@ gulp.task "breeder", ->
     .pipe coffee()
     .pipe gulp.dest meta.build
 
+gulp.task "browserify", ->
+  bundler = browserify
+    entries: [source.breeder]
+    extensions: [".coffee"]
+    debug: true
+
+  bundler.bundle()
+    .pipe sourceStream meta.name + ".js"
+    .pipe buffer()
+    .pipe gulp.dest meta.build
+
 gulp.task "specs", ->
   gulp.src source.specs
     .pipe concat "breeder.spec.coffee"
     .pipe coffee()
     .pipe gulp.dest meta.build
 
-gulp.task "test", ["breeder", "specs"], (done) ->
+gulp.task "test", ["browserify", "specs"], (done) ->
   karma.start
     autoWatch: "disable"
     basePath: "./"
