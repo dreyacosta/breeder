@@ -18,3 +18,12 @@ describe "Breeder", ->
     partial2 = partial1 4
     result   = partial2 10, 8
     expect(result).toEqual 40
+
+  it "should compose a function from 2 functions", ->
+    _sum = (a, b) ->
+      a + b
+    _double = (a) ->
+      a * 2
+    sumThenDouble = _.compose _double, _sum
+    result = sumThenDouble 6, 4
+    expect(result).toEqual 20
