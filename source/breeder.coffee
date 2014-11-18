@@ -20,5 +20,11 @@ _curryN = (length, fn) ->
 _.curry = (fn) ->
   _curryN fn.length, fn
 
+_compose = (fn1, fn2) ->
+    ->
+      fn1.call this, fn2.apply this, arguments
+
+_.compose = _compose
+
 window._ = _ if window?
 module.exports = _ if module? and module.exports?
