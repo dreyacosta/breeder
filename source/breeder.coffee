@@ -26,5 +26,15 @@ _compose = (fn1, fn2) ->
 
 _.compose = _compose
 
+_map = (iteratee, collection) ->
+  index  = -1
+  length = collection.length
+  result = new Array(length)
+  while ++index < length
+    result[index] = iteratee collection[index]
+  result
+
+_.map = _.curry _map
+
 window._ = _ if window?
 module.exports = _ if module? and module.exports?
