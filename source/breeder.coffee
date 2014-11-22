@@ -24,7 +24,13 @@ _compose = (fn1, fn2) ->
   ->
     fn1.call this, fn2.apply this, arguments
 
-_.compose = _compose
+_.compose = ->
+  index  = arguments.length - 1
+  fn     = arguments[index]
+  length = arguments.length
+  while index--
+    fn = _compose arguments[index], fn
+  fn
 
 _map = (iteratee, collection) ->
   index  = -1
