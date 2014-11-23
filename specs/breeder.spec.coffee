@@ -27,3 +27,16 @@ describe "Breeder", ->
     sumThenDouble = _.compose _double, _sum
     result = sumThenDouble 6, 4
     expect(result).toEqual 20
+
+  it "should compose a function from 4 functions", ->
+    _sum = (a, b) ->
+      a + b
+    _double = (a) ->
+      a * 2
+    _plus100 = (a) ->
+      a + 100
+    _message = (a) ->
+      "Result is: #{a}"
+    sumDoublePlus100Message = _.compose _message, _plus100, _double, _sum
+    result = sumDoublePlus100Message 6, 4
+    expect(result).toEqual "Result is: 120"
