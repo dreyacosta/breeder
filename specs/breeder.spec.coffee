@@ -40,3 +40,18 @@ describe "Breeder", ->
     sumDoublePlus100Message = _.compose _message, _plus100, _double, _sum
     result = sumDoublePlus100Message 6, 4
     expect(result).toEqual "Result is: 120"
+
+  it "should map over a collection", ->
+    collection = [10, 20, 30]
+    add100 = (a) ->
+      a + 100
+    result = _.map add100, collection
+    expect(result).toEqual [110, 120, 130]
+
+  it "should curry map over a collection", ->
+    collection = [1, 2, 3]
+    double = (a) ->
+      a * 2
+    doubleMap = _.map double
+    result    = doubleMap collection
+    expect(result).toEqual [2, 4, 6]
