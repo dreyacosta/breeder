@@ -17,8 +17,14 @@ _curryN = (length, fn) ->
     else
       fn.apply this, args
 
-_.curry = (fn) ->
-  _curryN fn.length, fn
+_.curry = (fn) -> do (recur = (as) ->
+  next = (nArgs...) ->
+    args = as or []
+    if args.push.apply(args, nArgs) < fn.length and nArgs.length
+      return recur args
+    fn args...
+  if fn.length > 1 then next else fn
+)
 
 _compose = (fn1, fn2) ->
   ->
