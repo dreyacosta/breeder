@@ -55,3 +55,23 @@ describe "Breeder", ->
     doubleMap = _.map double
     result    = doubleMap collection
     expect(result).toEqual [2, 4, 6]
+
+  it "should take a property from an object", ->
+    user =
+      username: "@dreyacosta"
+      site: "http://dreyacosta.com"
+    getSite = _.prop "site"
+    result  = getSite user
+    expect(result).toEqual "http://dreyacosta.com"
+
+  it "should take a property from an object (curried)", ->
+    fruits = [
+      { name: "Apple", color: "green" }
+      { name: "Kiwi", color: "brown" }
+      { name: "Lemon", color: "yellow" }
+    ]
+    getColor = _.prop "color"
+    result1  = getColor fruits[0]
+    result2  = getColor fruits[1]
+    expect(result1).toEqual "green"
+    expect(result2).toEqual "brown"
