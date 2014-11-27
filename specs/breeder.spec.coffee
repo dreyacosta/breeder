@@ -75,3 +75,12 @@ describe "Breeder", ->
     result2  = getColor fruits[1]
     expect(result1).toEqual "green"
     expect(result2).toEqual "brown"
+
+  it "should pluck colors", ->
+    fruits = [
+      { name: "Apple", color: "green" }
+      { name: "Kiwi", color: "brown" }
+      { name: "Lemon", color: "yellow" }
+    ]
+    result = _.pluck "color", fruits
+    expect(result).toEqual ["green", "brown", "yellow"]
