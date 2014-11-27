@@ -2,6 +2,13 @@
 
 _ = {}
 
+curry2 = (fn) ->
+  (a, b) ->
+    if arguments.length is 1
+      return (b) ->
+        fn a, b
+    fn a, b
+
 _.curry = (fn) -> do (recur = (as) ->
   next = (nArgs...) ->
     args = as or []
