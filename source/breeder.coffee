@@ -40,5 +40,10 @@ _map = (iteratee, collection) ->
 
 _.map = _.curry _map
 
+_prop = (property, obj) ->
+  obj[property]
+
+_.prop = curry2 _prop
+
 window._ = _ if window?
 module.exports = _ if module? and module.exports?
