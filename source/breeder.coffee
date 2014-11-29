@@ -45,5 +45,10 @@ _prop = (property, obj) ->
 
 _.prop = curry2 _prop
 
+_pluck = (property, collection) ->
+  _.map _.prop(property), collection
+
+_.pluck = _.curry _pluck
+
 window._ = _ if window?
 module.exports = _ if module? and module.exports?
