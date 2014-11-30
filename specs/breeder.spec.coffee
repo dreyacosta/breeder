@@ -2,6 +2,14 @@
 
 describe "Breeder", ->
 
+  it "should curry2 a function with 2 arguments", ->
+    _sum = (a, b) ->
+      a + b
+    sum = _.curry _sum
+    partial = sum 6
+    result  = partial 4
+    expect(result).toEqual 10
+
   it "should curry a function with 2 arguments", ->
     _sum = (a, b) ->
       a + b
