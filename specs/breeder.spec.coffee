@@ -99,3 +99,19 @@ describe "Breeder", ->
       a isnt 0
     result = _.filter remove0, prices
     expect(result).toEqual [37, 89, 78, 123, 1]
+
+  it "should reduce a collection", ->
+    fruits = [
+      { name: "Apple", color: "green" }
+      { name: "Kiwi", color: "brown" }
+      { name: "Lemon", color: "yellow" }
+    ]
+    _setPrice = (defaultPrice, accumulator, item) ->
+      item.price = defaultPrice
+      accumulator.push item
+      accumulator
+    setPrice = _.curry _setPrice
+    setPriceToZero = setPrice 0
+    result = _.reduce(setPriceToZero, [], fruits)
+    expect(result[0].price).toEqual 0
+    expect(result[1].price).toEqual 0
