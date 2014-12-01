@@ -92,3 +92,10 @@ describe "Breeder", ->
     ]
     result = _.pluck "color", fruits
     expect(result).toEqual ["green", "brown", "yellow"]
+
+  it "should filter 0 of a collection", ->
+    prices  = [37, 0, 0, 89, 78, 123, 0, 1, 0]
+    remove0 = (a) ->
+      a isnt 0
+    result = _.filter remove0, prices
+    expect(result).toEqual [37, 89, 78, 123, 1]
