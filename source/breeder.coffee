@@ -50,5 +50,14 @@ _pluck = (property, collection) ->
 
 _.pluck = _.curry _pluck
 
+_.filter = (fn, collection) ->
+  index  = -1
+  length = collection.length
+  result = []
+  while ++index < length
+    if fn(collection[index])
+      result.push collection[index]
+  result
+
 window._ = _ if window?
 module.exports = _ if module? and module.exports?
