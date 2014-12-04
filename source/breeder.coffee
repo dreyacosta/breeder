@@ -59,5 +59,12 @@ _.filter = (fn, collection) ->
       result.push collection[index]
   result
 
+_.reduce = (fn, accumulator, collection) ->
+  index  = -1
+  length = collection.length
+  while ++index < length
+    accumulator = fn accumulator, collection[index]
+  accumulator
+
 window._ = _ if window?
 module.exports = _ if module? and module.exports?
