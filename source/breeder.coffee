@@ -2,7 +2,12 @@
 
 _ = {}
 
-curry2 = (fn) ->
+_extend = (destination, sources...) ->
+  sources.forEach (source) ->
+    destination[method] = source[method] for method of source
+  destination
+
+_curry2 = (fn) ->
   (a, b) ->
     if arguments.length is 1
       return (b) ->
@@ -43,14 +48,14 @@ _.map = _.curry _map
 _prop = (property, obj) ->
   obj[property]
 
-_.prop = curry2 _prop
+_.prop = _curry2 _prop
 
 _pluck = (property, collection) ->
   _.map _.prop(property), collection
 
 _.pluck = _.curry _pluck
 
-_.filter = (fn, collection) ->
+_filter = (fn, collection) ->
   index  = -1
   length = collection.length
   result = []
@@ -59,12 +64,16 @@ _.filter = (fn, collection) ->
       result.push collection[index]
   result
 
-_.reduce = (fn, accumulator, collection) ->
+_.filter =  _.curry _filter
+
+_reduce = (fn, accumulator, collection) ->
   index  = -1
   length = collection.length
   while ++index < length
     accumulator = fn accumulator, collection[index]
   accumulator
+
+_.reduce =  _.curry _reduce
 
 window._ = _ if window?
 module.exports = _ if module? and module.exports?
