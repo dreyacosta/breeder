@@ -75,8 +75,10 @@ _reduce = (fn, accumulator, collection) ->
 
 _.reduce =  _.curry _reduce
 
-_.cloneObj = (a) ->
-  result = _extend {}, a
+_cloneObj = (obj) ->
+  result = _extend {}, obj
+
+_.cloneObj = _cloneObj
 
 window._ = _ if window?
 module.exports = _ if module? and module.exports?
