@@ -115,3 +115,12 @@ describe "Breeder", ->
     result = _.reduce(setPriceToZero, [], fruits)
     expect(result[0].price).toEqual 0
     expect(result[1].price).toEqual 0
+
+  it "should clone an object and be pure", ->
+    user =
+      username: "@dreyacosta"
+      site: "http://dreyacosta.com"
+    clone = _.cloneObj user
+    user.username = "@drey"
+    expect(clone.username).toEqual "@dreyacosta"
+    expect(user.username).toEqual "@drey"
