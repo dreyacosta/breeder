@@ -3,15 +3,13 @@
 _ = {}
 
 _extend = (destination, sources...) ->
-  sources.forEach (source) ->
-    destination[method] = source[method] for method of source
+  sources.forEach (source) -> destination[method] = source[method] for method of source
   destination
 
 _curry2 = (fn) ->
   (a, b) ->
     if arguments.length is 1
-      return (b) ->
-        fn a, b
+      return (b) -> fn a, b
     fn a, b
 
 _.curry = (fn) -> do (recur = (as) ->
@@ -23,9 +21,7 @@ _.curry = (fn) -> do (recur = (as) ->
   if fn.length > 1 then next else fn
 )
 
-_compose = (fn1, fn2) ->
-  ->
-    fn1.call this, fn2.apply this, arguments
+_compose = (fn1, fn2) -> -> fn1.call this, fn2.apply this, arguments
 
 _.compose = ->
   index  = arguments.length - 1
@@ -45,13 +41,11 @@ _map = (iteratee, collection) ->
 
 _.map = _.curry _map
 
-_prop = (property, obj) ->
-  obj[property]
+_prop = (property, obj) -> obj[property]
 
 _.prop = _curry2 _prop
 
-_pluck = (property, collection) ->
-  _.map _.prop(property), collection
+_pluck = (property, collection) -> _.map _.prop(property), collection
 
 _.pluck = _.curry _pluck
 
@@ -75,8 +69,7 @@ _reduce = (fn, accumulator, collection) ->
 
 _.reduce =  _.curry _reduce
 
-_cloneObj = (obj) ->
-  result = _extend {}, obj
+_cloneObj = (obj) -> result = _extend {}, obj
 
 _.cloneObj = _cloneObj
 
