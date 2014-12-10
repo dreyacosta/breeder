@@ -124,3 +124,8 @@ describe "Breeder", ->
     user.username = "@drey"
     expect(clone.username).toEqual "@dreyacosta"
     expect(user.username).toEqual "@drey"
+
+  it "should prepend an element", ->
+    abc = ["a", "b", "c"]
+    result = _.prepend "d", abc
+    expect(result).toEqual ["d", "a", "b", "c"]
