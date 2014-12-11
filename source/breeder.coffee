@@ -73,5 +73,22 @@ _cloneObj = (obj) -> result = _extend {}, obj
 
 _.cloneObj = _cloneObj
 
+_concat = (list1, list2) ->
+  list1 = list1 or []
+  list2 = list2 or []
+  length1 = list1.length
+  length2 = list2.length
+  result = new Array(length1 + length2)
+  index = -1
+  while ++index < length1
+    result[index] = list1[index]
+  index = -1
+  while ++index < length2
+    result[length1 + index] = list2[index]
+  result
+
+_.prepend = (el, collection) ->
+  _concat [el], collection
+
 window._ = _ if window?
 module.exports = _ if module? and module.exports?
