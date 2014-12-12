@@ -87,8 +87,10 @@ _concat = (list1, list2) ->
     result[length1 + index] = list2[index]
   result
 
-_.prepend = (el, collection) ->
+_prepend = (el, collection) ->
   _concat [el], collection
+
+_.prepend = _curry2 _prepend
 
 window._ = _ if window?
 module.exports = _ if module? and module.exports?
