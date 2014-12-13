@@ -129,3 +129,8 @@ describe "Breeder", ->
     abc = ["a", "b", "c"]
     result = _.prepend "d", abc
     expect(result).toEqual ["d", "a", "b", "c"]
+
+  it "should curry prepend an element", ->
+    abc = ["a", "b", "c"]
+    prependZ = _.prepend "Z"
+    expect(prependZ(abc)).toEqual ["Z", "a", "b", "c"]
