@@ -2,6 +2,8 @@
 
 _ = {}
 
+_.VERSION = 0.0.11
+
 _extend = (destination, sources...) ->
   sources.forEach (source) -> destination[method] = source[method] for method of source
   destination
