@@ -19,7 +19,7 @@
     "type": "git",
     "url": "git://github.com:dreyacosta/breeder.git"
   },
-  "author": "",
+  "author": "@dreyacosta",
   "license": "MIT",
   "devDependencies": {
     "browserify": "^6.3.2",
