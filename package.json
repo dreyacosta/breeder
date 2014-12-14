@@ -15,6 +15,10 @@
     "functional",
     "helper"
   ],
+  "repository": {
+    "type": "git",
+    "url": "git://github.com:dreyacosta/breeder.git"
+  },
   "author": "",
   "license": "MIT",
   "devDependencies": {
