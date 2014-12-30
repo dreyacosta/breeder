@@ -35,6 +35,26 @@ _.map(add100, numbers); // [105, 115, 125]
 
 ### _.compose(fn1, fn2, fn3)
 
-```js
+Return a composition of a list of functions. Each functions consume the return
+value of right function (right to left).
 
+```js
+var _sum = function (a, b) {
+  return a + b;
+};
+
+var _double = function (a) {
+  return a * 2;
+};
+
+var _plus100 = function (a) {
+  return a + 100;
+};
+
+var _message = function (a) {
+  return "Result is: " + a;
+};
+
+var sumDoublePlus100Message = _.compose(_message, _plus100, _double, _sum);
+sumDoublePlus100Message(6, 4); // "Result is: 120";
 ```
